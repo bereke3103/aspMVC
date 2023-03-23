@@ -7,8 +7,6 @@ namespace BulkyBookWeb.Controllers
 {
     public class CategoryController : Controller
     {
-
-        //Их мы переносим в класс Репозиторий
         private readonly ICategoryRepository _db;
 
         public CategoryController(ICategoryRepository db)

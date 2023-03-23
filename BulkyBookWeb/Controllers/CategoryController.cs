@@ -62,15 +62,15 @@ namespace BulkyBookWeb.Controllers
                 return NotFound();
             }
 
-            var categoryFromDb = _db.Categories.Find(id);
-            //var categoryFromDbFirstOrDefault = _db.Categories.FirstOrDefault(u=> u.Id == id);
+            //var categoryFromDb = _db.Categories.Find(id);
+            var categoryFromDbFirstOrDefault = _db.Categories.FirstOrDefault(u => u.Name == "id");
             //var categoryFromDbSingleOrDefault = _db.Categories.SingleOrDefault(u => u.Id == id);
-            if (categoryFromDb == null)
+            if (categoryFromDbFirstOrDefault == null)
             {
                 return NotFound();
             }
 
-            return View(categoryFromDb);
+            return View(categoryFromDbFirstOrDefault);
         }
 
 

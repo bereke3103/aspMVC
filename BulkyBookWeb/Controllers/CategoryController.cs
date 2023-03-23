@@ -6,6 +6,8 @@ namespace BulkyBookWeb.Controllers
 {
     public class CategoryController : Controller
     {
+
+        //Их мы переносим в класс Репозиторий
         private readonly ApplicationDbContext _db;
 
         public CategoryController(ApplicationDbContext db)

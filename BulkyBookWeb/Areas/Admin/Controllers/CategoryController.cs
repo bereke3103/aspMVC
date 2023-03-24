@@ -3,8 +3,9 @@ using BulkyBook.DataAccess.Repository.IRepository;
 using BulkyBook.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BulkyBookWeb.Controllers
+namespace BulkyBookWeb.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -32,7 +33,7 @@ namespace BulkyBookWeb.Controllers
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Category obj) 
+        public IActionResult Create(Category obj)
         {
 
             //CUSTOMVALIDATION
@@ -50,10 +51,10 @@ namespace BulkyBookWeb.Controllers
             }
             return View(obj);
         }
-        
-        
-        
-        
+
+
+
+
         //GET
         //EditCategory
         public IActionResult Edit(int? id)
@@ -78,7 +79,7 @@ namespace BulkyBookWeb.Controllers
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Category obj) 
+        public IActionResult Edit(Category obj)
         {
 
             //CUSTOMVALIDATION
@@ -95,10 +96,10 @@ namespace BulkyBookWeb.Controllers
                 return RedirectToAction("Index");
             }
             return View(obj);
-        } 
-        
-        
-        
+        }
+
+
+
         //GET
         //Delete
         public IActionResult Delete(int? id)
@@ -108,7 +109,7 @@ namespace BulkyBookWeb.Controllers
                 return NotFound();
             }
 
-            var categoryFromDb = _unitOfWork.Category.GetFirstOrDefault(u=> u.Id == id);
+            var categoryFromDb = _unitOfWork.Category.GetFirstOrDefault(u => u.Id == id);
             //var categoryFromDbFirstOrDefault = _db.Categories.FirstOrDefault(u=> u.Id == id);
             //var categoryFromDbSingleOrDefault = _db.Categories.SingleOrDefault(u => u.Id == id);
             if (categoryFromDb == null)
@@ -124,10 +125,10 @@ namespace BulkyBookWeb.Controllers
         //ActionName for in <form asp-action="Delete"></form>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeletePOST(int? id) 
+        public IActionResult DeletePOST(int? id)
         {
 
-            var obj = _unitOfWork.Category.GetFirstOrDefault(u=> u.Id == id);
+            var obj = _unitOfWork.Category.GetFirstOrDefault(u => u.Id == id);
             if (obj == null)
             {
                 return NotFound();

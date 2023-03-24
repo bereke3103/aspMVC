@@ -9,7 +9,7 @@ namespace BulkyBook.DataAccess.Repository.IRepository
 {
     public interface IRepository<T> where T : class
     {
-        //T -> Category
+        //T -> Product
 
         T GetFirstOrDefault(Expression<Func<T, bool>> filter);
 

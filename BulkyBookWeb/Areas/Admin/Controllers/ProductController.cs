@@ -1,6 +1,7 @@
 ﻿using BulkyBook.DataAccess;
 using BulkyBook.DataAccess.Repository.IRepository;
 using BulkyBook.Models;
+using BulkyBook.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -60,35 +61,55 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
         //EditCategory
         public IActionResult Upsert(int? id)
         {
-            Product product = new();
 
-            //select List dropdown
-            IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetAll()
-                .Select(u => new SelectListItem
+            ProductVM productVM = new()
+            {
+                product = new(),
+                CategoryList = _unitOfWork.Category.GetAll().Select(i => new SelectListItem
                 {
-                    Text = u.Name,
-                    Value = u.Id.ToString(),
-                });
+                    Text= i.Name,
+                    Value = i.Id.ToString(),
+                }),
 
-            IEnumerable<SelectListItem> CoverTypeList = _unitOfWork.CoverType.GetAll()
-                .Select(u => new SelectListItem
+                CoverTypeList = _unitOfWork.CoverType.GetAll().Select(i => new SelectListItem
                 {
-                    Text = u.Name,
-                    Value = u.Id.ToString()
-                });
+                    Text= i.Name,
+                    Value = i.Id.ToString(),
+                })
+
+            };
+
+
+            //БЫЛА ПЕРЕНЕСЕНА В PRODUCT VIEWS MODELS
+            //Product product = new();
+
+            ////select List dropdown
+            //IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetAll()
+            //    .Select(u => new SelectListItem
+            //    {
+            //        Text = u.Name,
+            //        Value = u.Id.ToString(),
+            //    });
+
+            //IEnumerable<SelectListItem> CoverTypeList = _unitOfWork.CoverType.GetAll()
+            //    .Select(u => new SelectListItem
+            //    {
+            //        Text = u.Name,
+            //        Value = u.Id.ToString()
+            //    });
 
 
             if (id == null || id == 0)
             {
                 //ViewBag for HTML
-                ViewBag.CategoryList = CategoryList;
+                //ViewBag.CategoryList = CategoryList;
 
                 //ViewData for HTML
-                ViewData["CoverTypeList"] = CoverTypeList;
+                //ViewData["CoverTypeList"] = CoverTypeList;
 
 
                 //create product
-                return View(product);
+                return View(productVM);
             }
             else
             {
@@ -97,25 +118,19 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
 
             
 
-            return View(product);
+            return View(productVM);
         }
 
 
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Upsert(Category obj)
+        public IActionResult Upsert(ProductVM obj, IFormFile file)
         {
-
-            //CUSTOMVALIDATION
-            if (obj.Name == obj.DisplayOrder.ToString())
-            {
-                ModelState.AddModelError("name", "The DisplayOrder cannot exactly match the Name.");
-            }
 
             if (ModelState.IsValid)
             {
-                _unitOfWork.Category.Update(obj);
+                //_unitOfWork.Category.Update(obj);
                 _unitOfWork.Save();
                 TempData["success"] = "Category updated successfully";
                 return RedirectToAction("Index");

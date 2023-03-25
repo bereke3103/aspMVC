@@ -1140,3 +1140,5 @@ C:\Users\berek\OneDrive\Рабочий стол\UdemyASPCORE\RazorPages\BulkyBoo
 C:\Users\berek\OneDrive\Рабочий стол\UdemyASPCORE\RazorPages\BulkyBook\BulkyBookWeb\obj\Debug\net6.0\BulkyBookWeb.csproj.CopyComplete
 C:\Users\berek\OneDrive\Рабочий стол\UdemyASPCORE\RazorPages\BulkyBook\BulkyBookWeb\obj\Debug\net6.0\BulkyBookWeb.genruntimeconfig.cache
 C:\Users\berek\OneDrive\Рабочий стол\UdemyASPCORE\RazorPages\BulkyBook\BulkyBookWeb\obj\Debug\net6.0\ref\BulkyBookWeb.dll
+C:\Users\berek\OneDrive\Рабочий стол\UdemyASPCORE\RazorPages\BulkyBook\BulkyBookWeb\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\berek\OneDrive\Рабочий стол\UdemyASPCORE\RazorPages\BulkyBook\BulkyBookWeb\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll

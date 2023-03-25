@@ -2,6 +2,7 @@
 using BulkyBook.DataAccess.Repository.IRepository;
 using BulkyBook.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BulkyBookWeb.Areas.Admin.Controllers
 {
@@ -57,29 +58,49 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
 
         //GET
         //EditCategory
-        public IActionResult Edit(int? id)
+        public IActionResult Upsert(int? id)
         {
+            Product product = new();
+
+            //select List dropdown
+            IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetAll()
+                .Select(u => new SelectListItem
+                {
+                    Text = u.Name,
+                    Value = u.Id.ToString(),
+                });
+
+            IEnumerable<SelectListItem> CoverTypeList = _unitOfWork.CoverType.GetAll()
+                .Select(u => new SelectListItem
+                {
+                    Text = u.Name,
+                    Value = u.Id.ToString()
+                });
+
+
             if (id == null || id == 0)
             {
-                return NotFound();
-            }
+                //ViewBag for HTML
+                ViewBag.CategoryList = CategoryList;
 
-            //var categoryFromDb = _db.Categories.Find(id);
-            var categoryFromDbFirstOrDefault = _unitOfWork.Category.GetFirstOrDefault(u => u.Id == id);
-            //var categoryFromDbSingleOrDefault = _db.Categories.SingleOrDefault(u => u.Id == id);
-            if (categoryFromDbFirstOrDefault == null)
+                //create product
+                return View(product);
+            }
+            else
             {
-                return NotFound();
+                //update product
             }
 
-            return View(categoryFromDbFirstOrDefault);
+            
+
+            return View(product);
         }
 
 
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Category obj)
+        public IActionResult Upsert(Category obj)
         {
 
             //CUSTOMVALIDATION

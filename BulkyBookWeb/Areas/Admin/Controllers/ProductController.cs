@@ -11,18 +11,22 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
-        public ProductController(IUnitOfWork unitOfWork)
+        public ProductController(IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment)
         {
             _unitOfWork = unitOfWork;
+            _hostEnvironment = hostEnvironment;
         }
 
         public IActionResult Index()
         {
 
-            IEnumerable<Product> objCategoryList = _unitOfWork.Product.GetAll();
 
-            return View(objCategoryList);
+            //вместо этого будем вставлять datatable from datatables.net
+            //IEnumerable<Product> objCategoryList = _unitOfWork.Product.GetAll();
+
+            return View();
         }
 
         //GET
@@ -113,12 +117,14 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
             }
             else
             {
+                productVM.product = _unitOfWork.Product.GetFirstOrDefault(i => i.Id == id);
                 //update product
+
+                return View(productVM);
             }
 
             
 
-            return View(productVM);
         }
 
 
@@ -127,57 +133,89 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Upsert(ProductVM obj, IFormFile file)
         {
-
             if (ModelState.IsValid)
             {
-                //_unitOfWork.Category.Update(obj);
+                string wwwRootPath = _hostEnvironment.WebRootPath;
+                if (file != null)
+                {
+                    string fileName = Guid.NewGuid().ToString();
+                    var uploads = Path.Combine(wwwRootPath, @"images\products");
+
+                    var extension = Path.GetExtension(file.FileName);
+
+                    if (obj.product.ImageUrl != null)
+                    {
+                        var oldImagePath = Path.Combine(wwwRootPath, obj.product.ImageUrl.TrimStart('\\'));
+                        if (System.IO.File.Exists(oldImagePath))
+                        {
+                            System.IO.File.Delete(oldImagePath);
+                        }
+                    }
+
+                    using (var fileStream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                    {
+                        file.CopyTo(fileStream);
+                    }
+
+                    obj.product.ImageUrl = @"\images\products\" + fileName + extension;
+                }
+
+                if (obj.product.Id == 0)
+                {
+                    _unitOfWork.Product.Add(obj.product);
+                }
+                else
+                {
+                    _unitOfWork.Product.Update(obj.product);
+
+                }
+
                 _unitOfWork.Save();
-                TempData["success"] = "Category updated successfully";
+                TempData["success"] = "Product created successfully";
                 return RedirectToAction("Index");
             }
             return View(obj);
         }
 
 
+        #region API CALLS
+        [HttpGet]
 
-        //GET
-        //Delete
-        public IActionResult Delete(int? id)
+        public IActionResult GetAll()
         {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
+            var productList = _unitOfWork.Product.GetAll(includeProperties:"Category,CoverType");
 
-            var categoryFromDb = _unitOfWork.Category.GetFirstOrDefault(u => u.Id == id);
-            //var categoryFromDbFirstOrDefault = _db.Categories.FirstOrDefault(u=> u.Id == id);
-            //var categoryFromDbSingleOrDefault = _db.Categories.SingleOrDefault(u => u.Id == id);
-            if (categoryFromDb == null)
-            {
-                return NotFound();
-            }
-
-            return View(categoryFromDb);
+            return Json(new { data = productList });
         }
+        #endregion
 
 
         //POST
         //ActionName for in <form asp-action="Delete"></form>
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public IActionResult DeletePOST(int? id)
+        [HttpDelete]
+        //[ValidateAntiForgeryToken] -> для HttpDelete нежелательно
+        public IActionResult Delete(int? id)
         {
 
-            var obj = _unitOfWork.Category.GetFirstOrDefault(u => u.Id == id);
+            var obj = _unitOfWork.Product.GetFirstOrDefault(u => u.Id == id);
             if (obj == null)
             {
-                return NotFound();
+                return Json(new {success = false, message = "Error while deleting"});
             }
 
-            _unitOfWork.Category.Remove(obj);
+            var oldImagePath = Path.Combine(_hostEnvironment.WebRootPath, obj.ImageUrl.TrimStart('\\'));
+            if (System.IO.File.Exists(oldImagePath))
+            {
+                System.IO.File.Delete(oldImagePath);
+            }
+
+            _unitOfWork.Product.Remove(obj);
             _unitOfWork.Save();
-            TempData["success"] = "Category deleted successfully";
-            return RedirectToAction("Index");
+
+            return Json(new { success = true, message = "Delete successfull" });
+
         }
     }
+
+
 }

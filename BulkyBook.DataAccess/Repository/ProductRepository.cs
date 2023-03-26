@@ -15,10 +15,6 @@ namespace BulkyBook.DataAccess.Repository
         {
             _db = db;
         }
-        //public void Save()
-        //{
-        //    _db.SaveChanges();
-        //}
 
         public void Update(Product obj)
         {
@@ -26,16 +22,16 @@ namespace BulkyBook.DataAccess.Repository
 
             if (objFromDb != null)
             {
-                objFromDb.Title= objFromDb.Title;
-                objFromDb.ISBN= objFromDb.ISBN;
-                objFromDb.Description= objFromDb.Description;
-                objFromDb.ListPrice= objFromDb.ListPrice;
-                objFromDb.Price = objFromDb.Price;
-                objFromDb.Price50 = objFromDb.Price50;
-                objFromDb.Price100 = objFromDb.Price100;
-                objFromDb.CategoryId= objFromDb.CategoryId;
-                objFromDb.Author = objFromDb.Author;
-                objFromDb.CoverTypeId = objFromDb.CoverTypeId;
+                objFromDb.Title= obj.Title;
+                objFromDb.ISBN= obj.ISBN;
+                objFromDb.Description= obj.Description;
+                objFromDb.ListPrice= obj.ListPrice;
+                objFromDb.Price = obj.Price;
+                objFromDb.Price50 = obj.Price50;
+                objFromDb.Price100 = obj.Price100;
+                objFromDb.CategoryId= obj.CategoryId;
+                objFromDb.Author = obj.Author;
+                objFromDb.CoverTypeId = obj.CoverTypeId;
 
                 if (obj.ImageUrl != null)
                 {

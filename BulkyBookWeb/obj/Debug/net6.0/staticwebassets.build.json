@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Tumrh4j43LIb3nlB1/RSWWPvYr2I10+QW494Ig+lCqA=",
+  "Hash": "W9dAP3c5WLPnqvv/+7ZBMIVKSwoTR0kgww1NgPgbWX4=",
   "Source": "BulkyBookWeb",
   "BasePath": "_content/BulkyBookWeb",
   "Mode": "Default",
@@ -1205,6 +1205,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\products\\e707d00e-60c2-4055-acae-4318521db1eb.png"
+    },
+    {
+      "Identity": "C:\\Users\\berek\\OneDrive\\Рабочий стол\\UdemyASPCORE\\RazorPages\\BulkyBook\\BulkyBookWeb\\wwwroot\\js\\company.js",
+      "SourceId": "BulkyBookWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\berek\\OneDrive\\Рабочий стол\\UdemyASPCORE\\RazorPages\\BulkyBook\\BulkyBookWeb\\wwwroot\\",
+      "BasePath": "_content/BulkyBookWeb",
+      "RelativePath": "js/company.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\company.js"
     },
     {
       "Identity": "C:\\Users\\berek\\OneDrive\\Рабочий стол\\UdemyASPCORE\\RazorPages\\BulkyBook\\BulkyBookWeb\\wwwroot\\js\\product.js",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3LdLboVKWfHcYIWsgT5rtAmrJVz1nyFxymoUYOsMHrcVmZ2aStvsSoCIe0LZ9t3KrTnW2zt9Gjx4hrQZZCGgxA==",
+  "dgSpecHash": "k+xzomdiWhu3e5HrsZ9mudu1pd9lxCu8qNfaXFRX6TvmoMgj8/9EXnMkcRomLoxl+BrjHLRTVwF96oUd9FniCA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\berek\\OneDrive\\Рабочий стол\\UdemyASPCORE\\RazorPages\\BulkyBook\\BulkyBook.DataAccess\\BulkyBook.DataAccess.csproj",
+  "projectFilePath": "C:\\Users\\berek\\OneDrive\\Рабочий стол\\c#Tutorial\\UdemyASPCORE\\RazorPages\\BulkyBook\\BulkyBook.DataAccess\\BulkyBook.DataAccess.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\berek\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\berek\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

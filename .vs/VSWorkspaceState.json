@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\BulkyBookWeb",
+    "\\BulkyBookWeb\\Areas",
+    "\\BulkyBookWeb\\Areas\\Customer",
+    "\\BulkyBookWeb\\Areas\\Customer\\Controllers",
+    "\\BulkyBookWeb\\Areas\\Customer\\Views",
+    "\\BulkyBookWeb\\Areas\\Customer\\Views\\Home"
+  ],
+  "SelectedNode": "\\BulkyBookWeb\\Areas\\Customer\\Controllers\\HomeController.cs",
+  "PreviewInSolutionExplorer": false
+}

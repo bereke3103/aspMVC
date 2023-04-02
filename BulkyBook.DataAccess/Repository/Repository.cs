@@ -25,6 +25,7 @@ namespace BulkyBook.DataAccess.Repository
             //использовать Intellisense, чтобы увидеть все таблицы, для взаимодействия 
             //с которыми был разработан контекст. Конечный результат функционально эквивалентен 
             //использованию Set<T>.
+          //  _db.ShoppingCarts.Include(u => u.Product).Include(u => u.CoverType);
             this.dbSet = _db.Set<T>();
 
         }
@@ -36,10 +37,13 @@ namespace BulkyBook.DataAccess.Repository
 
 
         //includeProp = "Category, CoverType"
-        public IEnumerable<T> GetAll(string? includeProperties = null)
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter=null, string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
-
+            if (filter!=null)
+            {
+                query = query.Where(filter);
+            }
             //какой то сомнительный для Include
             if (includeProperties != null)
             {

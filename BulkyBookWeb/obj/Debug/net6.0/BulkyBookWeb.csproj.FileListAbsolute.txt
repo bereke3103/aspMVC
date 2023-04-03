@@ -1728,3 +1728,8 @@ C:\Users\berek\OneDrive\Рабочий стол\c#Tutorial\UdemyASPCORE\RazorPag
 C:\Users\berek\OneDrive\Рабочий стол\c#Tutorial\UdemyASPCORE\RazorPages\BulkyBook\BulkyBookWeb\obj\Debug\net6.0\BulkyBookWeb.genruntimeconfig.cache
 C:\Users\berek\OneDrive\Рабочий стол\c#Tutorial\UdemyASPCORE\RazorPages\BulkyBook\BulkyBookWeb\obj\Debug\net6.0\ref\BulkyBookWeb.dll
 C:\Users\berek\OneDrive\Рабочий стол\c#Tutorial\UdemyASPCORE\RazorPages\BulkyBook\BulkyBookWeb\bin\Debug\net6.0\Stripe.net.dll
+C:\Users\berek\OneDrive\Рабочий стол\c#Tutorial\UdemyASPCORE\RazorPages\BulkyBook\BulkyBookWeb\bin\Debug\net6.0\MailKit.dll
+C:\Users\berek\OneDrive\Рабочий стол\c#Tutorial\UdemyASPCORE\RazorPages\BulkyBook\BulkyBookWeb\bin\Debug\net6.0\MimeKit.dll
+C:\Users\berek\OneDrive\Рабочий стол\c#Tutorial\UdemyASPCORE\RazorPages\BulkyBook\BulkyBookWeb\bin\Debug\net6.0\BouncyCastle.Crypto.dll
+C:\Users\berek\OneDrive\Рабочий стол\c#Tutorial\UdemyASPCORE\RazorPages\BulkyBook\BulkyBookWeb\bin\Debug\net6.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\berek\OneDrive\Рабочий стол\c#Tutorial\UdemyASPCORE\RazorPages\BulkyBook\BulkyBookWeb\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
